@@ -11,7 +11,6 @@ using System.Windows.Forms;
 namespace JollyMcKing
 {
 
-    //The Customer can order multiple orders
     public partial class Form1 : Form
     {
         const double MEAL1 = 35.00;
