@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace JollyMcKing
 {
+
+    //The Customer can order multiple orders
     public partial class Form1 : Form
     {
         const double MEAL1 = 35.00;
@@ -150,7 +152,7 @@ namespace JollyMcKing
 
         }
 
-
+        //RolineGwaps
 
         private void cbMeal4_CheckedChanged(object sender, EventArgs e)
         {
