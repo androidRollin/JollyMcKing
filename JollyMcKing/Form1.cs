@@ -117,11 +117,7 @@ namespace JollyMcKing
 
         private void cbMeal1_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbMeal1.Checked)
-            {
-                AddToListView(cbMeal1.Text, MEAL1.ToString());
-                AddToTotal(MEAL1);
-            }
+
 
 
         }
@@ -134,21 +130,13 @@ namespace JollyMcKing
 
         private void cbMeal2_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbMeal2.Checked)
-            {
-                AddToListView(cbMeal2.Text, MEAL2.ToString());
-                AddToTotal(MEAL2);
-            }
+
 
         }
 
         private void cbMeal3_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbMeal3.Checked)
-            {
-                AddToListView(cbMeal3.Text, MEAL3.ToString());
-                AddToTotal(MEAL3);
-            }
+
 
         }
 
@@ -156,51 +144,31 @@ namespace JollyMcKing
 
         private void cbMeal4_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbMeal4.Checked)
-            {
-                AddToListView(cbMeal4.Text, MEAL4.ToString());
-                AddToTotal(MEAL4);
-            }
+
 
         }
 
         private void cbTapsilog_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbTapsilog.Checked)
-            {
-                AddToListView(cbTapsilog.Text, TAPSILOG.ToString());
-                AddToTotal(TAPSILOG);
-            }
+
 
         }
 
         private void cbHotsilog_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbHotsilog.Checked)
-            {
-                AddToListView(cbHotsilog.Text, HOTSILOG.ToString());
-                AddToTotal(HOTSILOG);
-            }
+
 
         }
 
         private void cbTocilog_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbTocilog.Checked)
-            {
-                AddToListView(cbTocilog.Text, TOCILOG.ToString());
-                AddToTotal(TOCILOG);
-            }
+
 
         }
 
         private void cbHamsilog_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbHamsilog.Checked)
-            {
-                AddToListView(cbHamsilog.Text, HAMSILOG.ToString());
-                AddToTotal(HAMSILOG);
-            }
+
 
         }
 
@@ -209,9 +177,6 @@ namespace JollyMcKing
             if (cbSoda.Checked)
             {
                 panel1.Enabled = true;
-                string beveragePrice = GetBeveragePrice(SODA);
-                AddToListView(cbSoda.Text, beveragePrice);
-                AddToTotal(Convert.ToDouble(beveragePrice));
             }
             else
             {
@@ -239,9 +204,6 @@ namespace JollyMcKing
             if (cbIcedTea.Checked)
             {
                 panel1.Enabled = true;
-                string beveragePrice = GetBeveragePrice(ICEDTEA);
-                AddToListView(cbIcedTea.Text, beveragePrice);
-                AddToTotal(Convert.ToDouble(beveragePrice));
             }
             else
             {
@@ -257,10 +219,7 @@ namespace JollyMcKing
         {
             if (cbJuice.Checked)
             {
-                string beveragePrice = GetBeveragePrice(JUICE);
                 panel1.Enabled = true;
-                AddToListView(cbJuice.Text, beveragePrice);
-                AddToTotal(Convert.ToDouble(beveragePrice));
             }
             else
             {
@@ -374,11 +333,13 @@ namespace JollyMcKing
 
         private void btnOrder_Click_1(object sender, EventArgs e)
         {
+            tbAmountGiven.Text = string.Empty;
+            tbChange.Text = string.Empty;
             if((!rbDriveIn.Checked) && (!rbTakeOut.Checked))
             {
                 MessageBox.Show("Please select type of Order, before ordering, thanks!", "Order");
                 return;
-            } 
+            }
 
             /**
             if((!cbValueMeal.Checked) && (!cbRiceMeal.Checked) && (!cbBeverages.Checked))
@@ -386,16 +347,83 @@ namespace JollyMcKing
                 MessageBox.Show("Please select an order ", "Order");
                 return;
             }**/
+            displayOrderInListView();
             if (total == 0)
             {
                 MessageBox.Show("Please Order Something", "Order");
                 return;
             }
 
+
+
             MessageBox.Show("Order processed, please proceed to Payment", "Order");
             groupBox4.Enabled = true;
 
 
+        }
+
+        private void displayOrderInListView()
+        {
+            listView1.Items.Clear();
+            total = 0;
+            if (cbMeal1.Checked == true)
+            {
+                AddToListView(cbMeal1.Text, MEAL1.ToString());
+                AddToTotal(MEAL1);
+            }
+            if (cbMeal2.Checked)
+            {
+                AddToListView(cbMeal2.Text, MEAL2.ToString());
+                AddToTotal(MEAL2);
+            }
+            if (cbMeal3.Checked)
+            {
+                AddToListView(cbMeal3.Text, MEAL3.ToString());
+                AddToTotal(MEAL3);
+            }
+            if (cbMeal4.Checked)
+            {
+                AddToListView(cbMeal4.Text, MEAL4.ToString());
+                AddToTotal(MEAL4);
+            }
+            if (cbTapsilog.Checked)
+            {
+                AddToListView(cbTapsilog.Text, TAPSILOG.ToString());
+                AddToTotal(TAPSILOG);
+            }
+            if (cbHotsilog.Checked)
+            {
+                AddToListView(cbHotsilog.Text, HOTSILOG.ToString());
+                AddToTotal(HOTSILOG);
+            }
+            if (cbTocilog.Checked)
+            {
+                AddToListView(cbTocilog.Text, TOCILOG.ToString());
+                AddToTotal(TOCILOG);
+            }
+            if (cbHamsilog.Checked)
+            {
+                AddToListView(cbHamsilog.Text, HAMSILOG.ToString());
+                AddToTotal(HAMSILOG);
+            }
+            if (cbSoda.Checked)
+            {
+                string beveragePrice = GetBeveragePrice(SODA);
+                AddToListView(cbSoda.Text, beveragePrice);
+                AddToTotal(Convert.ToDouble(beveragePrice));
+            }
+            if (cbIcedTea.Checked)
+            {
+                string beveragePrice = GetBeveragePrice(ICEDTEA);
+                AddToListView(cbIcedTea.Text, beveragePrice);
+                AddToTotal(Convert.ToDouble(beveragePrice));
+            }
+            if (cbJuice.Checked)
+            {
+                string beveragePrice = GetBeveragePrice(JUICE);
+                AddToListView(cbJuice.Text, beveragePrice);
+                AddToTotal(Convert.ToDouble(beveragePrice));
+            }
         }
 
         private void groupBox4_Enter(object sender, EventArgs e)
@@ -405,6 +433,7 @@ namespace JollyMcKing
 
         private void btnCompute_Click(object sender, EventArgs e)
         {
+            tbChange.Text = string.Empty;
             if (String.IsNullOrEmpty(tbAmountGiven.Text))
             {
                 MessageBox.Show("You didn't enter any payment, Please Try Again", "Payment");
